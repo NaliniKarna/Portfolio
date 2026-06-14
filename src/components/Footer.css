@@ -1,0 +1,19 @@
+.footer {
+  padding: 2rem 2rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+  border-top: 1px solid var(--border2);
+}
+.footer__copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg3);
+}
+.footer__links { display: flex; gap: 1.5rem; }
+.footer__link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg3); text-decoration: none; transition: color 0.2s;
+}
+.footer__link:hover { color: var(--accent); }
+@media (max-width: 768px) { .footer { padding: 1.5rem 1.25rem; } }
