@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --bg:      #08090e;
+  --bg2:     #0e1018;
+  --bg3:     #13151f;
+  --bg4:     #1a1d2a;
+  --fg:      #f0ede8;
+  --fg2:     rgba(240,237,232,0.62);
+  --fg3:     rgba(240,237,232,0.32);
+  --accent:  #6c63ff;
+  --accent2: #a78bfa;
+  --accent3: #38bdf8;
+  --green:   #34d399;
+  --border:  rgba(108,99,255,0.15);
+  --border2: rgba(240,237,232,0.07);
+  --card:    #0e1018;
+  --nav-h:   64px;
+  --radius:  10px;
+}
+
+[data-theme="light"] {
+  --bg:     #f8f7fc;
+  --bg2:    #f0eef9;
+  --bg3:    #e8e5f5;
+  --bg4:    #ddd9f0;
+  --fg:     #0d0c14;
+  --fg2:    rgba(13,12,20,0.62);
+  --fg3:    rgba(13,12,20,0.35);
+  --border:  rgba(108,99,255,0.2);
+  --border2: rgba(13,12,20,0.08);
+  --card:    #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.35s, color 0.35s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CURSOR ── */
+.cursor {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--accent); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s;
+}
+.cursor-ring {
+  position: fixed; width: 32px; height: 32px;
+  border: 1.5px solid var(--accent); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%); opacity: 0.35;
+  transition: width 0.2s, height 0.2s, opacity 0.2s;
+}
+
+/* ── LAYOUT ── */
+section { padding: 7rem 2rem; border-bottom: 1px solid var(--border2); }
+.inner  { max-width: 1100px; margin: 0 auto; }
+
+/* ── TYPOGRAPHY ── */
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); display: block; margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; line-height: 1.1; margin-bottom: 3.5rem;
+}
+
+/* ── PILL ── */
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 0.28rem 0.75rem;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.67rem; letter-spacing: 0.05em;
+  color: var(--fg2);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(108,99,255,0.06);
+}
+.pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.72rem 1.6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border2);
+  background: transparent; color: var(--fg);
+  cursor: pointer; text-decoration: none;
+  transition: all 0.22s;
+  white-space: nowrap;
+}
+.btn:hover { border-color: var(--fg); transform: translateY(-2px); }
+.btn-primary {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent2); border-color: var(--accent2); }
+.btn-outline { border-color: var(--border2); color: var(--fg2); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── FADE-IN ── */
+.fade-in {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes blink   { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+  50%     { box-shadow: 0 0 0 6px rgba(52,211,153,0); }
+}
+@keyframes scrollLine {
+  0%   { left: -100%; } 100% { left: 100%; }
+}
+@keyframes gradientShift {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 5rem 1.25rem; }
+  .cursor, .cursor-ring { display: none; }
+}
